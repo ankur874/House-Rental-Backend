@@ -1,11 +1,25 @@
 const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+require("dotenv").config({ path: "./config.env" });
+
 const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+(async function connectDB() {
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("MongoDB Connected..... 🚀");
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
+  }
+})();
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+app.use(express.json({ extended: false }));
+app.use("/api/users", require("./Routes/UserRoutes"));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("Server started on port " + PORT));
