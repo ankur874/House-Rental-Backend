@@ -9,7 +9,7 @@ const propertySchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  owner_id: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },

@@ -20,6 +20,7 @@ const app = express();
 
 app.use(express.json({ extended: false }));
 app.use("/api/users", require("./Routes/UserRoutes"));
+app.use("/api/property", require("./Routes/PropertyRoutes"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server started on port " + PORT));
