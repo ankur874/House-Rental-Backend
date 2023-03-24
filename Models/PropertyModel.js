@@ -17,9 +17,39 @@ const propertySchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  total_rooms: {
+  bedrooms: {
     type: Number,
     required: true,
+  },
+  bathrooms: {
+    type: Number,
+    required: true,
+  },
+  kitchens: {
+    type: Number,
+    required: true,
+  },
+  infants: {
+    type: Number,
+    required: true,
+  },
+  adults: {
+    type: Number,
+    required: true,
+  },
+  children: {
+    type: Number,
+    required: true,
+  },
+  is_sold: {
+    type: Boolean,
+    default: false,
+  },
+  rent_start_date: {
+    type: String,
+  },
+  rent_end_date: {
+    type: String,
   },
   total_area: {
     type: Number,
@@ -27,6 +57,12 @@ const propertySchema = mongoose.Schema({
   },
   rating: {
     type: Number,
+  },
+  property_type: {
+    type: String,
+  },
+  rentOrBuy: {
+    type: String,
   },
   neighbourhood_detail: {
     type: String,

@@ -15,6 +15,14 @@ const RequestSchema = mongoose.Schema({
     ref: "user",
     required: true,
   },
+  is_pending: {
+    type: Boolean,
+    default: true,
+  },
+  is_accepted: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = Request = mongoose.model("request", RequestSchema);
