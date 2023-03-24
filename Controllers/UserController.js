@@ -34,11 +34,7 @@ exports.createUser = async (req, res, next) => {
 
 exports.getCurrentUserProfile = async (req, res, next) => {
   try {
-    const currentUser = await User.findOne({ _id: req.params.id })
-      .populate("saved")
-      .populate("purchase_history")
-      .populate("hosted_properties")
-      .populate("requests");
+    const currentUser = await User.findOne({ _id: req.params.id });
 
     if (currentUser) {
       res.status(201).json({
