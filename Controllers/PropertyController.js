@@ -90,7 +90,7 @@ exports.getTopRatedProperties = async (req, res, next) => {
     const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
     }).populate("reviews");
-    property.sort((a, b) =>
+    properties.sort((a, b) =>
       a.rating > b.rating ? 1 : b.rating > a.rating ? -1 : 0
     );
     res.status(201).json({
