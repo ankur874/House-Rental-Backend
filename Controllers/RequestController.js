@@ -105,7 +105,7 @@ exports.updateRequest = async (req, res, next) => {
 
 exports.getRequest = async (req, res, next) => {
   try {
-    const request = await Request.find({ request_id: req.params.id });
+    const request = await Request.find({ _id: req.params.id });
     res.status(201).json({
       status: "Success",
       request,

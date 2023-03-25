@@ -5,8 +5,9 @@ const router = express.Router();
 
 router.route("/").post(requestController.createRequest);
 
-router.route("/:id").get(requestController.getRequest);
-
-router.route("/updaterequest").post(requestController.updateRequest);
+router
+  .route("/:id")
+  .get(requestController.getRequest)
+  .post(requestController.updateRequest);
 
 module.exports = router;
