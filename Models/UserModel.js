@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
   hosted_properties: [
     { type: mongoose.Schema.Types.ObjectId, ref: "property" },
   ],
-  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "property" }],
+  requests: [{ type: mongoose.Schema.Types.ObjectId, ref: "request" }],
 });
 
 module.exports = User = mongoose.model("user", userSchema);

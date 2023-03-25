@@ -81,7 +81,7 @@ exports.updateRequest = async (req, res, next) => {
       property.save();
       const user = await User.findOneAndUpdate(
         { _id: user_id },
-        { $push: { purchase_history: request_id } }
+        { $push: { purchase_history: property } }
       );
       user.save();
     }
