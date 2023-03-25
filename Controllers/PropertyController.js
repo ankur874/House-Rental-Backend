@@ -69,7 +69,7 @@ exports.getPropertiesByLocation = async (req, res, next) => {
     const { city, country } = req.body;
     const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
-    });
+    }).populate("reviews");
     res.status(201).json({
       status: "Success",
       data: {
@@ -89,7 +89,7 @@ exports.getTopRatedProperties = async (req, res, next) => {
     const { city, country } = req.body;
     const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
-    });
+    }).populate("reviews");
     property.sort((a, b) =>
       a.rating > b.rating ? 1 : b.rating > a.rating ? -1 : 0
     );
