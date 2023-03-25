@@ -33,7 +33,7 @@ exports.createProperty = async (req, res, next) => {
 
 exports.getAllProperties = async (req, res, next) => {
   try {
-    const properties = await Property.find({});
+    const properties = await Property.find({}).populate("reviews");
     res.status(201).json({
       status: "Success",
       data: {
@@ -51,7 +51,7 @@ exports.getAllProperties = async (req, res, next) => {
 
 exports.getPropertyById = async (req, res, next) => {
   try {
-    const property = await Property.findById(req.params.id);
+    const property = await Property.findById(req.params.id).populate("reviews");
     res.status(201).json({
       status: "Success",
       property,
