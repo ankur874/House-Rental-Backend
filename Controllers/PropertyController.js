@@ -67,13 +67,13 @@ exports.getPropertyById = async (req, res, next) => {
 exports.getPropertiesByLocation = async (req, res, next) => {
   try {
     const { city, country } = req.body;
-    const property = await Property.find({
+    const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
     });
     res.status(201).json({
       status: "Success",
       data: {
-        property,
+        properties,
       },
     });
   } catch (err) {
@@ -87,7 +87,7 @@ exports.getPropertiesByLocation = async (req, res, next) => {
 exports.getTopRatedProperties = async (req, res, next) => {
   try {
     const { city, country } = req.body;
-    const property = await Property.find({
+    const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
     });
     property.sort((a, b) =>
@@ -96,7 +96,7 @@ exports.getTopRatedProperties = async (req, res, next) => {
     res.status(201).json({
       status: "Success",
       data: {
-        property,
+        properties,
       },
     });
   } catch (err) {
