@@ -72,7 +72,9 @@ exports.getPropertiesByLocation = async (req, res, next) => {
     });
     res.status(201).json({
       status: "Success",
-      property,
+      data: {
+        property,
+      },
     });
   } catch (err) {
     console.log(err);
@@ -93,7 +95,9 @@ exports.getTopRatedProperties = async (req, res, next) => {
     );
     res.status(201).json({
       status: "Success",
-      property,
+      data: {
+        property,
+      },
     });
   } catch (err) {
     console.log(err);
