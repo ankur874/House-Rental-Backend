@@ -10,11 +10,11 @@ router
 
 router
   .route("/getPropertyByLocation")
-  .get(propertyController.getPropertiesByLocation);
+  .post(propertyController.getPropertiesByLocation);
 
 router
   .route("/getTopRatedProperties")
-  .get(propertyController.getTopRatedProperties);
+  .post(propertyController.getTopRatedProperties);
 
 router.route("/:id").get(propertyController.getPropertyById);
 
