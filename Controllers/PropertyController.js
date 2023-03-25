@@ -33,7 +33,7 @@ exports.createProperty = async (req, res, next) => {
 
 exports.getAllProperties = async (req, res, next) => {
   try {
-    const properties = await Property.find();
+    const properties = await Property.find({});
     res.status(201).json({
       status: "Success",
       data: {
@@ -44,7 +44,7 @@ exports.getAllProperties = async (req, res, next) => {
     console.log(err);
     res.status(500).json({
       status: "Failed",
-      message: `cannot get all orders error: ${err}`,
+      message: `cannot get all properties error: ${err}`,
     });
   }
 };
