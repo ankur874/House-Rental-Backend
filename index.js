@@ -19,7 +19,8 @@ const app = express();
 })();
 
 app.use(express.json({ extended: false }));
-app.use("/images", express.static(path.join(__dirname, "/images")));
+app.use(express.static(__dirname + "/images"));
+app.use("./images", express.static("images"));
 app.use("/api/users", require("./Routes/UserRoutes"));
 app.use("/api/properties", require("./Routes/PropertyRoutes"));
 app.use("/api/requests", require("./Routes/RequestRoutes"));
