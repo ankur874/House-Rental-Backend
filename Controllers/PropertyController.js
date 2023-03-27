@@ -33,7 +33,10 @@ exports.createProperty = async (req, res, next) => {
 
 exports.getAllProperties = async (req, res, next) => {
   try {
-    const properties = await Property.find({}).populate("reviews");
+    const properties = await Property.find({}).populate({
+      path: "reviews",
+      populate: { path: "user_id" },
+    });
     res.status(201).json({
       status: "Success",
       data: {
@@ -95,7 +98,10 @@ exports.getTopRatedProperties = async (req, res, next) => {
     const { city, country } = req.body;
     const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
-    }).populate("reviews");
+    }).populate({
+      path: "reviews",
+      populate: { path: "user_id" },
+    });
     properties.sort((a, b) =>
       a.rating > b.rating ? 1 : b.rating > a.rating ? -1 : 0
     );
