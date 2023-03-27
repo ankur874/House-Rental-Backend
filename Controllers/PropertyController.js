@@ -51,7 +51,10 @@ exports.getAllProperties = async (req, res, next) => {
 
 exports.getPropertyById = async (req, res, next) => {
   try {
-    const property = await Property.findById(req.params.id).populate("reviews");
+    const property = await Property.findById(req.params.id).populate({
+      path: "reviews",
+      populate: { path: "user_id" },
+    });
     res.status(201).json({
       status: "Success",
       property,
@@ -69,7 +72,10 @@ exports.getPropertiesByLocation = async (req, res, next) => {
     const { city, country } = req.body;
     const properties = await Property.find({
       $and: [{ city: city }, { country: country }],
-    }).populate("reviews");
+    }).populate({
+      path: "reviews",
+      populate: { path: "user_id" },
+    });
     res.status(201).json({
       status: "Success",
       data: {
