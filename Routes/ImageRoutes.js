@@ -9,7 +9,10 @@ const storage = multer.diskStorage({
     cb(null, "images/");
   },
   filename(req, file, cb) {
-    cb(null, "tempraray");
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    );
   },
 });
 
@@ -17,7 +20,7 @@ const upload = multer({ storage });
 
 router.post("/", upload.single("image"), (req, res) => {
   res.status(200).json({
-    name: "temp",
+    name: `/${req.file.path.replace(/\\/g, "/")}`,
   });
 });
 
