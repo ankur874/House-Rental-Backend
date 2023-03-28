@@ -6,7 +6,7 @@ const router = express.Router();
 
 const upload = multer({ dest: "uploads/" });
 
-router.post("/profile", upload.single("avatar"), (req, res, next) => {
+router.post("/", upload.single("avatar"), (req, res, next) => {
   res.status(200).json({
     name: `/${req.file.path.replace(/\\/g, "/")}`,
   });
