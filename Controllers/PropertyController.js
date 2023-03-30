@@ -53,10 +53,12 @@ exports.getAllProperties = async (req, res, next) => {
 
 exports.getPropertyById = async (req, res, next) => {
   try {
-    const property = await Property.findById(req.params.id).populate({
-      path: "reviews",
-      populate: { path: "user_id" },
-    });
+    const property = await Property.findById(req.params.id)
+      .populate({
+        path: "reviews",
+        populate: { path: "user_id" },
+      })
+      .populate("user_id");
     res.status(201).json({
       status: "Success",
       property,
@@ -65,7 +67,7 @@ exports.getPropertyById = async (req, res, next) => {
     console.log(err);
     res.status(500).json({
       status: "Failed",
-      message: `cannot get order error: ${err}`,
+      message: `cannot get property error: ${err}`,
     });
   }
 };
