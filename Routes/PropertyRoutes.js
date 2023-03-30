@@ -12,10 +12,6 @@ router
   .route("/getPropertyByLocation")
   .post(propertyController.getPropertiesByLocation);
 
-router
-  .route("/getTopRatedProperties")
-  .post(propertyController.getTopRatedProperties);
-
 router.route("/:id").get(propertyController.getPropertyById);
 
 module.exports = router;

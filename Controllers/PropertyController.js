@@ -20,7 +20,6 @@ exports.createProperty = async (req, res, next) => {
     res.status(201).json({
       status: "Success",
       property: newProperty,
-      user: updatedUser,
     });
   } catch (err) {
     console.log(err);
@@ -70,52 +69,34 @@ exports.getPropertyById = async (req, res, next) => {
     });
   }
 };
+
 exports.getPropertiesByLocation = async (req, res, next) => {
   try {
     const { city, country } = req.body;
-    const properties = await Property.find({
+    const propertiesByLocation = await Property.find({
       $and: [{ city: city }, { country: country }],
-    }).populate({
-      path: "reviews",
-      populate: { path: "user_id" },
     });
-    res.status(201).json({
-      status: "Success",
-      data: {
-        properties,
-      },
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({
-      status: "Failed",
-      message: `cannot get order error: ${err}`,
-    });
-  }
-};
-exports.getTopRatedProperties = async (req, res, next) => {
-  try {
-    const { city, country } = req.body;
-    const properties = await Property.find({
-      $and: [{ city: city }, { country: country }],
-    }).populate({
-      path: "reviews",
-      populate: { path: "user_id" },
-    });
-    properties.sort((a, b) =>
+    const sortedProperties = propertiesByLocation;
+    sortedProperties.sort((a, b) =>
       a.rating > b.rating ? 1 : b.rating > a.rating ? -1 : 0
     );
     res.status(201).json({
       status: "Success",
-      data: {
-        properties,
-      },
+      nearLocation: propertiesByLocation,
+      topRated: sortedProperties,
+      title1: "Find your place in",
+      title2: "What do you need",
+      title3: "Near your location",
+      title4: `Top rated in ${city}`,
+      subtitle1: "I need to rent",
+      subtitle2: "I need to buy",
+      subtitle3: `${propertiesByLocation.length} properties in ${city}`,
     });
   } catch (err) {
     console.log(err);
     res.status(500).json({
       status: "Failed",
-      message: `cannot get order error: ${err}`,
+      message: `cannot get properties error: ${err}`,
     });
   }
 };
