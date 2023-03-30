@@ -152,7 +152,7 @@ exports.removefromfav = async (req, res, next) => {
 exports.getSaved = async (req, res, next) => {
   try {
     const user = await User.findOne({ _id: req.params.id }).populate("saved");
-    const savedList = user.saved;
+    var savedList = user.saved;
     res.status(201).json({
       status: "Success",
       savedList,
