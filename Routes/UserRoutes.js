@@ -15,4 +15,6 @@ router
 router.route("/addtofav").post(userController.addToFav);
 router.route("/removefromfav").post(userController.removefromfav);
 
+router.route("/getSaved/:id").get(userController.getSaved);
+
 module.exports = router;
