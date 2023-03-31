@@ -32,6 +32,7 @@ const userSchema = mongoose.Schema({
   },
   is_host: {
     type: Boolean,
+    default: false,
   },
   saved: [
     {
