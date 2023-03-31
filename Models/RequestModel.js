@@ -23,6 +23,15 @@ const RequestSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  start_date: {
+    type: String,
+  },
+  end_date: {
+    type: String,
+  },
+  guest_count: {
+    type: Number,
+  },
 });
 
 module.exports = Request = mongoose.model("request", RequestSchema);

@@ -20,7 +20,6 @@ exports.createRequest = async (req, res, next) => {
     res.status(201).json({
       status: "Success",
       request: newRequest,
-      user: updatedUser,
     });
   } catch (err) {
     console.log(err);
