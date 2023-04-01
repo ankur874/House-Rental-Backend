@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/").post(requestController.createRequest);
 
-router.post(requestController.getRequest);
+router.route("/getrequest").post(requestController.getRequest);
 
 router.route("/:id").post(requestController.updateRequest);
 
