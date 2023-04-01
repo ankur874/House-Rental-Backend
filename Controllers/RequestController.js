@@ -104,7 +104,11 @@ exports.updateRequest = async (req, res, next) => {
 
 exports.getRequest = async (req, res, next) => {
   try {
-    const request = await Request.find({ property_id: req.params.id });
+    const { property_id, user_id } = req.body;
+    const request = await Request.find({
+      $and: [{ property_id: property_id }, { user_id: user_id }],
+    });
+
     res.status(201).json({
       status: "Success",
       request,
