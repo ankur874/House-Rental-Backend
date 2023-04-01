@@ -104,7 +104,7 @@ exports.updateRequest = async (req, res, next) => {
 
 exports.getRequest = async (req, res, next) => {
   try {
-    const request = await Request.find({ _id: req.params.id });
+    const request = await Request.find({ property_id: req.params.id });
     res.status(201).json({
       status: "Success",
       request,
@@ -113,7 +113,7 @@ exports.getRequest = async (req, res, next) => {
     console.log(err);
     res.status(500).json({
       status: "Failed",
-      message: `cannot get request error: ${err}`,
+      message: `cannot get property error: ${err}`,
     });
   }
 };
