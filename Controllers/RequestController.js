@@ -124,13 +124,13 @@ exports.getRequest = async (req, res, next) => {
 
 exports.getRequestWithID = async (req, res, next) => {
   try {
-    const { user_id } = req.params.id;
-    const request = await Request.find({ user_id: user_id }).populate(
+    // const { user_id } = req.params.id;
+    const request = await Request.find({ user_id: req.params.id }).populate(
       "property_id"
     );
 
     res.status(201).json({
-      status: "Success",
+      status: "Success1",
       request,
     });
   } catch (err) {
