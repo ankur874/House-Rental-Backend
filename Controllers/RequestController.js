@@ -121,3 +121,23 @@ exports.getRequest = async (req, res, next) => {
     });
   }
 };
+
+exports.getRequestWithID = async (req, res, next) => {
+  try {
+    const { user_id } = req.params.id;
+    const request = await Request.find({ user_id: user_id }).populate(
+      "property_id"
+    );
+
+    res.status(201).json({
+      status: "Success",
+      request,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "Failed",
+      message: `cannot get property error: ${err}`,
+    });
+  }
+};
