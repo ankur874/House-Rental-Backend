@@ -163,7 +163,7 @@ exports.getHostRequestID = async (req, res, next) => {
 
     res.status(201).json({
       status: "Success1",
-      requests,
+      request,
     });
   } catch (err) {
     console.log(err);
