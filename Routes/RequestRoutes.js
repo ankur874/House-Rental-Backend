@@ -10,4 +10,6 @@ router.route("/getrequest").post(requestController.getRequest);
 router.route("/:id").post(requestController.updateRequest);
 router.route("/getuserrequest/:id").get(requestController.getRequestWithID);
 
+router.route("/gethostrequest/:id").get(requestController.getHostRequestID);
+
 module.exports = router;

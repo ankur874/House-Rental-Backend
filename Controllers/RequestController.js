@@ -141,3 +141,36 @@ exports.getRequestWithID = async (req, res, next) => {
     });
   }
 };
+
+exports.getHostRequestID = async (req, res, next) => {
+  try {
+    const currentUser = await User.findOne({ _id: req.params.id }).populate(
+      "hosted_properties"
+    );
+    var hosted_properties = currentUser.hosted_properties;
+    // List requests = [];
+    console.log(hosted_properties.length);
+    // print(hosted_properties.length);
+    var requests = new Array();
+    for (var i = 0; i < hosted_properties.length; i++) {
+      const request = await Request.find({
+        property_id: hosted_properties[i]._id,
+      });
+
+      for (var j = 0; j < request.length; j++) {
+        requests.push(request[j]);
+      }
+    }
+
+    res.status(201).json({
+      status: "Success1",
+      requests,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      status: "Failed",
+      message: `cannot get property error: ${err}`,
+    });
+  }
+};
