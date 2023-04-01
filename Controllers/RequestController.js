@@ -156,7 +156,7 @@ exports.getHostRequestID = async (req, res, next) => {
       const request1 = await Request.find({
         property_id: hosted_properties[i]._id,
       }).populate("property_id");
-      for (var j = 0; j < request.length; j++) {
+      for (var j = 0; j < request1.length; j++) {
         request.push(request1[j]);
       }
     }
